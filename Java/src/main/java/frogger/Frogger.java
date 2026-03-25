@@ -11,21 +11,16 @@ public class Frogger {
     private final Road road;
     private int position;
     
-    // Field for task 2. Anything to add/change?
+    // Field for task 2.
     private final Records records;
-    private String firstName, lastName, phoneNumber, zipCode, state, gender;
+    // Task 2 Fix: 6 Strings ne badle ek j object (Data Clump Fixed)
+    private final FroggerID id;
 
-    public Frogger(Road road, int position, Records records, String firstName, String lastName, String phoneNumber,
-    String zipCode, String state, String gender) {
+    public Frogger(Road road, int position, Records records, FroggerID id) {
         this.road = road;
         this.position = position;
         this.records = records;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.zipCode = zipCode;
-        this.state = state;
-        this.gender = gender;
+        this.id = id;
     }
 
     /**
@@ -43,26 +38,21 @@ public class Frogger {
         return true;
     }
 
-    // TODO: Do you notice any issues here?
+    // Task 1 Fix: Road mathi logic call karvu (Feature Envy Fixed)
     public boolean isOccupied(int position) {
-        boolean[] occupied = this.road.getOccupied();
-        return occupied[position];
+        return this.road.isOccupied(position);
     }
     
     public boolean isValid(int position) {
-        if (position < 0) return false;
-        boolean[] occupied = this.road.getOccupied();
-        return position < occupied.length;
+        return this.road.isValid(position);
     }
 
     /**
      * Records Frogger to the list of records.
-     * 
      * @return true if record successful, else false.
      */
     public boolean recordMyself() {
-      boolean success = records.addRecord(firstName, lastName, phoneNumber, zipCode, state, gender);
-      return success;
+      // Task 2 Fix: Akho ID object moklavo (Long Parameter List Fixed)
+      return records.addRecord(id);
     }
-
 }

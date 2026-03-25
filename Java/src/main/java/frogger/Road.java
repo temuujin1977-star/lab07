@@ -12,6 +12,15 @@ public class Road {
         this.occupied = occupied;
     }
 
+    // Task 1: Road pote j "Information Expert" che, tethi logic ahi hovu joie
+    public boolean isOccupied(int position) {
+        return occupied[position];
+    }
+
+    public boolean isValid(int position) {
+        return position >= 0 && position < occupied.length;
+    }
+
     public boolean[] getOccupied() {
         return this.occupied;
     }
