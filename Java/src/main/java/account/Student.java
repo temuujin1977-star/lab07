@@ -5,7 +5,7 @@ package account;
  *
  * @author Zishen Wen (F22), Deyuan Chen (S22)
  */
-// TODO: Think about what can be a issue of the Student class?
+
 public class Student extends PaymentAccount {
 
     private double gpa;

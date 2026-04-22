@@ -6,35 +6,26 @@ import drawing.writing.PNGWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-/**
- * Refactor Task 3: (Mis-)Shaped
- *
- * @author Zishen Wen (F22), Deyuan Chen (S22)
- */
 public interface Shape {
 
-    /**
-     * Converts shape into lines.
-     *
-     * @return lines of this shape.
-     */
     Line[] toLines();
 
     /**
-     * Draws lines to file.
+     * Рефакторинг: Drawing класс шугам дамжуулах шаардлагагүй болсон.
+     * Дүрс өөрөө toLines() дуудаж шугамаа авна.
      */
-    default void draw(Writer writer, Line[] lines) {
-        try {
-            for (Line line : lines) {
-                // TODO: what is the purpose of the code there?
-                if (writer instanceof JPEGWriter) {
-                    writer.write(line.toJPEG());
-                } else if (writer instanceof PNGWriter) {
-                    writer.write(line.toPNG());
-                }
+   default void draw(Writer writer) {
+    try {
+        Line[] lines = toLines();
+        for (Line line : lines) {
+            if (writer instanceof JPEGWriter) {
+                ((JPEGWriter) writer).writeLine(line); // Type casting хийж өгнө
+            } else if (writer instanceof PNGWriter) {
+                ((PNGWriter) writer).writeLine(line); // Type casting хийж өгнө
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 }

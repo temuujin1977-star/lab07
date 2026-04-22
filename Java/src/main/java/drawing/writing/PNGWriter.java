@@ -1,5 +1,5 @@
 package drawing.writing;
-
+import drawing.shapes.Line;
 import java.io.IOException;
 import java.io.Writer;
 
@@ -12,7 +12,10 @@ public class PNGWriter extends Writer {
     // This is a stub class. Pretend this writer work.
     public PNGWriter(String s) {
     }
-
+    public void writeLine(Line line) throws IOException {
+        // Line-ийг PNG формат руу хөрвүүлээд бичих
+        this.write(line.toPNG()); 
+    }
     @Override
     public void write(char[] cbuf, int off, int len) throws IOException {
     }
